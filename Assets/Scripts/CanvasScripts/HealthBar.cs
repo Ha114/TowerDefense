@@ -18,10 +18,8 @@ public class HealthBar : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] Text healthContainer;
-    public int hpCount = 3;
-
-    // Start is called before the first frame update
+    [SerializeField] List<GameObject> hearts = new List<GameObject>();
+    private int hpCount = 3;
     void Start()
     {
         UpdateLifeScore();
@@ -29,14 +27,16 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateLifeScore(int hpDamage = 0)
     {
-        healthContainer.text = "";
+        foreach (var heart in hearts)
+            heart.SetActive(false);
+
         hpCount -= hpDamage;
 
         if (hpCount <= 0) GameOver();
 
         for (int i = 0; i < hpCount; i++)
         {
-            healthContainer.text += "❤";
+            hearts[i].SetActive(true);
         }
     }
 

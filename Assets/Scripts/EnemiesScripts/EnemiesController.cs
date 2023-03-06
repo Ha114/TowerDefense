@@ -27,7 +27,6 @@ public class EnemiesController : MonoBehaviour
     public int enemyCountToSpawn = 10;
     public float timeStep = 1f; //time period beetween spawning enemies;
 
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(StartSpawn());
@@ -44,8 +43,6 @@ public class EnemiesController : MonoBehaviour
             enemiesList.Add(enemy);
             yield return new WaitForSeconds(timeStep);
         }
-        Menu.instance.ShowPanel(true);
-        Time.timeScale = 0f;
     }
 
     public void CheckSurroundings()

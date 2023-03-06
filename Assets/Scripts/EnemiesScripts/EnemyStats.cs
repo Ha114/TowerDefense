@@ -13,7 +13,7 @@ public class EnemyStats : MonoBehaviour
     {
         if (--hp <= 0)
         {
-            DestroyImmediate(gameObject);
+            Die();
             return;
         }
         else
@@ -29,5 +29,15 @@ public class EnemyStats : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         gameObject.transform.GetComponent<MeshRenderer>().material.color = previousColor;
     }
-    
+
+    public void Die()
+    {
+        DestroyImmediate(gameObject);
+        EnemiesController.instance.CheckSurroundings();
+        if (EnemiesController.instance.enemiesList.Count == 0)
+        {
+            Menu.instance.ShowPanel(true);
+        }
+    }
+
 }

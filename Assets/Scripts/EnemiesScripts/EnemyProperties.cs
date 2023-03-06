@@ -39,9 +39,8 @@ public class EnemyProperties : EnemyStats
         }
         else
         {
-            enemiesController.CheckSurroundings();
+            Die();
             healthBar.UpdateLifeScore(damage);
-            Destroy(gameObject);
             return;
         }
     }
